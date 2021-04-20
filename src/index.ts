@@ -1,5 +1,23 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
+
+import * as ntClient from "wpilib-nt-client";
+
+const client = new ntClient.Client();
+
+ipcMain.on("Start", (ipcEvent: Electron.IpcMainEvent) => {
+  client.start((isConnected: boolean, err: Error) => {
+    // Displays the error and the state of connection
+    console.log({ isConnected, err });
+  }, "172.22.11.2");
+
+  // Adds a listener to the client
+  client.addListener((key: any, val: any, type: String, id) => {
+    console.log({ key, val, type, id });
+    if (key === "/Shuffleboard/Dashboard-Test/Data")
+      ipcEvent.reply("Data", val);
+  });
+});
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
