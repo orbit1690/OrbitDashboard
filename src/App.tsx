@@ -1,5 +1,11 @@
 import React from "react";
 
-const App = (): JSX.Element => <div>Hello, World!</div>;
+import LineChart from "./LineChart/LineChart";
+
+const App = (): JSX.Element => (
+  <>
+    <LineChart />
+  </>
+);
 
 export default App;

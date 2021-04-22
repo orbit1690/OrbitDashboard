@@ -85,6 +85,7 @@
   "dependencies": {
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "canvasjs-react-charts": "^1.0.5",
     "electron-rebuild": "^2.3.5",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.14.0",
