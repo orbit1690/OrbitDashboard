@@ -3,13 +3,15 @@ declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 import * as ntClient from "wpilib-nt-client";
 
+const roboRIOAddress = "172.22.11.2";
+
 const client = new ntClient.Client();
 
 ipcMain.on("Start", (ipcEvent: Electron.IpcMainEvent) => {
   client.start((isConnected: boolean, err: Error) => {
     // Displays the error and the state of connection
     console.log({ isConnected, err });
-  }, "172.22.11.2");
+  }, roboRIOAddress);
 
   // Adds a listener to the client
   client.addListener((key: any, val: any, type: String, id) => {
