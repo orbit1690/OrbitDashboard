@@ -1,25 +1,23 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow } from "electron";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 import * as ntClient from "wpilib-nt-client";
-
-const roboRIOAddress = "172.22.11.2";
+import {
+  connectToRoboRIO,
+  listenForNetworkTableRemoval,
+  listenForNTRequestsFromRenderer,
+} from "./utils/NetworkTables";
 
 const client = new ntClient.Client();
 
-ipcMain.on("Start", (ipcEvent: Electron.IpcMainEvent) => {
-  client.start((isConnected: boolean, err: Error) => {
-    // Displays the error and the state of connection
-    console.log({ isConnected, err });
-  }, roboRIOAddress);
+// Connecting the client to RoboRIO's address over wi-fi
+connectToRoboRIO(client);
 
-  // Adds a listener to the client
-  client.addListener((key: any, val: any, type: String, id) => {
-    console.log({ key, val, type, id });
-    if (key === "/Shuffleboard/Dashboard-Test/Data")
-      ipcEvent.reply("Data", val);
-  });
-});
+// Listens for requests from the UI, which come via electron's ipc
+listenForNTRequestsFromRenderer(client);
+
+// Listens for requests from the UI, to remove listeners from nt-entries.
+listenForNetworkTableRemoval(client);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
