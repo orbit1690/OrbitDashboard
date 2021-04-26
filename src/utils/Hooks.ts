@@ -23,7 +23,8 @@ export const useToggle = (
   initialValue: boolean = false
 ): [boolean, () => void] => {
   const [toggle, setToggle] = useState(initialValue);
-  return [toggle, (): void => setToggle((prev: boolean): boolean => !prev)];
+  const flip = (): void => setToggle((prev: boolean): boolean => !prev);
+  return [toggle, flip];
 };
 
 export const useIncrement = (
