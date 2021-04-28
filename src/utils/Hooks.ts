@@ -27,16 +27,16 @@ export const useToggle = (
   return [toggle, flip];
 };
 
-export const useIncrement = (
-  initialValue: number = 0
-): [number, () => void] => {
+export const useCounter = (initialValue: number = 0): [number, () => void] => {
   const [counter, setCounter] = useState(initialValue);
   const increment = (): void => setCounter((prev: number): number => prev + 1);
   return [counter, increment];
 };
 
-// Inspired by LabVIEW's "feedback node".
-// Used to remember the history of a variable to a certain limit - maxFeedbacks.
+/*
+ * Inspired by LabVIEW's "feedback node".
+ * Used to remember the history of a variable to a certain limit - maxFeedbacks.
+ */
 export const useFeedback = <T>(
   maxFeedbacks: number
 ): [T[], (newData: T) => void] => {
@@ -44,7 +44,11 @@ export const useFeedback = <T>(
 
   const addData = (newData: T): void => {
     setData((prev: T[]): T[] => {
-      const clone: T[] = prev;
+      /*
+       * Cloning the array using spread operator in order to point to a different location in memory.
+       * When putting back in an array with the same pointer, react doesn't re-render the component.
+       */
+      const clone: T[] = [...prev];
       if (clone.length >= maxFeedbacks) clone.shift();
       clone.push(newData);
       return clone;
