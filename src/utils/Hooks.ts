@@ -10,7 +10,7 @@ export const useToggleArray = (
 
   const flipIndex = (index: number): void => {
     setArray((prev: boolean[]): boolean[] => {
-      const clone: boolean[] = prev;
+      const clone: boolean[] = [...prev];
       clone[index] = !clone[index];
       return clone;
     });
