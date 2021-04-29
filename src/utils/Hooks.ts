@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Vector from "./Vector";
 
 export const useToggleArray = (
   length: number,
@@ -29,9 +30,23 @@ export const useToggle = (
 
 export const useCounter = (initialValue: number = 0): [number, () => void] => {
   const [counter, setCounter] = useState(initialValue);
-  const increment = (): void => setCounter((prev: number): number => prev + 1);
+
+  const increment = (): number => {
+    setCounter((prev: number): number => prev + 1);
+    return counter;
+  }
+
   return [counter, increment];
 };
+
+export const useCounterVector = (): (yValue: number) => Vector => {
+  const [counter, increment] = useCounter();
+
+  return (yValue: number) => {
+    increment();
+    return new Vector(counter, yValue);
+  }
+}
 
 /*
  * Inspired by LabVIEW's "feedback node".
