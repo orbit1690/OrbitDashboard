@@ -1,46 +1,62 @@
-import React, { useState, useEffect } from "react";
-import { CanvasJSChart } from "canvasjs-react-charts";
+import React from "react";
+import { CanvasJSChart } from "canvasjs-react-charts"; // See decs.d.ts for more info about this library
+import Vector from "../utils/Vector";
+import { useToggleArray } from "../utils/Hooks";
 
-interface LineChartProps {
-  title?: string;
-  xTitle?: string;
-  yTitle?: string;
-  maxDataPoints?: number;
+interface LineChartDataset {
+  readonly data: Vector[];
+  readonly title: string;
 }
 
-type DataPoint = { x: number; y: number };
+interface LineChartProps {
+  readonly title: string;
+  readonly xTitle?: string;
+  readonly yTitle?: string;
+  readonly datasets: LineChartDataset[];
+}
+
+const chartOptions: {} = {
+  animationEnabled: true,
+  zoomEnabled: true,
+  theme: "dark2",
+};
 
 const LineChart = (props: LineChartProps): JSX.Element => {
-  const [data, setData] = useState<DataPoint[]>([{ x: 0, y: 0 }]);
+  const [visible, toggleVisibility] = useToggleArray(
+    props.datasets.length,
+    true
+  );
 
-  useEffect((): void => {
-    setInterval((): void => {
-      setData((prev: DataPoint[]): DataPoint[] => [
-        ...prev,
-        {
-          x: prev[prev.length - 1].x + 1,
-          y: prev[prev.length - 1].y + Math.round((Math.random() - 0.5) * 2),
-        },
-      ]);
-    }, 20);
-  }, []);
+  const title: {} = { text: props.title };
 
-  const options: {} = {
-    title: {
-      text: "Dynamic Line Chart",
-    },
-    data: [
-      {
-        type: "line",
-        dataPoints: data,
-      },
-    ],
+  const data: {}[] = props.datasets.map(
+    (dataset: LineChartDataset, index: number): {} => ({
+      type: "line",
+      dataPoints: dataset.data.map((point) => ({
+        x: point.x,
+        y: point.y,
+      })),
+      showInLegend: "true",
+      visible: visible[index],
+      name: dataset.title,
+    })
+  );
+
+  const itemclick = (event: { dataSeriesIndex: number }): void =>
+    toggleVisibility(event.dataSeriesIndex);
+
+  const legend: {} = { cursor: "pointer", itemclick };
+
+  const axisX = { title: props.xTitle };
+  const axisY = {
+    title: props.yTitle,
+    includeZero: false,
   };
 
   return (
-    <h1>
-      <CanvasJSChart options={options} />
-    </h1>
+    <CanvasJSChart
+      options={{ ...chartOptions, data, title, legend, axisX, axisY }}
+    />
   );
 };
 

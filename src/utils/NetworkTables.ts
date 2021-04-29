@@ -97,7 +97,7 @@ export const useNetworkTable = <T>(entry: string, defaultValue: T): T => {
     // Cleanup when component is unmounted
     return (): void => {
       ipcRenderer.send("Remove-Listener", networkTableListener);
-      ipcRenderer.removeListener(entry, handleIpcReply);
+      ipcRenderer.removeListener(`NTEntry ${entry}`, handleIpcReply);
     };
   }, []);
 

@@ -8,4 +8,8 @@ export default class Vector {
   public get angle(): number {
     return Math.atan2(this.y, this.x);
   }
+
+  public static get random(): Vector {
+    return new Vector(Math.random(), Math.random());
+  }
 }
