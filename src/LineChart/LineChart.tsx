@@ -30,13 +30,11 @@ const LineChart = (props: LineChartProps): JSX.Element => {
   const title: {} = { text: props.title };
 
   const data: {}[] = props.datasets.map(
-    (dataset: LineChartDataset, index: number): {} => ({
+    (dataset: LineChartDataset, index: number): {
+    } => ({
       type: "line",
-      dataPoints: dataset.data.map((point) => ({
-        x: point.x,
-        y: point.y,
-      })),
-      showInLegend: "true",
+      dataPoints: dataset.data,
+      showInLegend: true,
       visible: visible[index],
       name: dataset.title,
     })
