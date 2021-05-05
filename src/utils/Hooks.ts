@@ -30,23 +30,22 @@ export const useToggle = (
 
 export const useCounter = (initialValue: number = 0): [number, () => void] => {
   const [counter, setCounter] = useState(initialValue);
-
-  const increment = (): number => {
-    setCounter((prev: number): number => prev + 1);
-    return counter;
-  }
-
+  const increment = (): void => setCounter((prev: number): number => prev + 1);
   return [counter, increment];
 };
 
-export const useCounterVector = (): (yValue: number) => Vector => {
-  const [counter, increment] = useCounter();
+export const useCounterVector = (): ((yValue: number) => Vector) => {
+  const [, setCounter] = useState(0);
 
-  return (yValue: number) => {
-    increment();
-    return new Vector(counter, yValue);
-  }
-}
+  return (yValue: number): Vector => {
+    let v: Vector;
+    setCounter((prev: number): number => {
+      v = new Vector(prev, yValue);
+      return prev + 1;
+    });
+    return v;
+  };
+};
 
 /*
  * Inspired by LabVIEW's "feedback node".
