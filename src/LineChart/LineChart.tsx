@@ -9,7 +9,7 @@ interface LineChartDataset {
 }
 
 interface LineChartProps {
-  readonly title: string;
+  readonly title?: string;
   readonly xTitle?: string;
   readonly yTitle?: string;
   readonly datasets: LineChartDataset[];
@@ -19,6 +19,7 @@ const chartOptions: {} = {
   animationEnabled: true,
   zoomEnabled: true,
   theme: "dark2",
+  exportEnabled: true,
 };
 
 const LineChart = (props: LineChartProps): JSX.Element => {
@@ -30,8 +31,7 @@ const LineChart = (props: LineChartProps): JSX.Element => {
   const title: {} = { text: props.title };
 
   const data: {}[] = props.datasets.map(
-    (dataset: LineChartDataset, index: number): {
-    } => ({
+    (dataset: LineChartDataset, index: number): {} => ({
       type: "line",
       dataPoints: dataset.data,
       showInLegend: true,
