@@ -14,6 +14,7 @@ const Arrow = (props: ArrowProps): JSX.Element => (
       width: props.lengthInPixels,
       transformOrigin: "center left",
       transform: `rotate(${props.rotationInRadians}rad)`,
+      position: "absolute",
     }}
   >
     <defs>
