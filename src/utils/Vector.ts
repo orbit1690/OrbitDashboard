@@ -12,4 +12,6 @@ export default class Vector {
   public static get random(): Vector {
     return new Vector(Math.random(), Math.random());
   }
+
+  public static readonly zero = new Vector(0, 0);
 }
