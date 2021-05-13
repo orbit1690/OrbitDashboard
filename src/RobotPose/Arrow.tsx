@@ -1,43 +1,36 @@
 import React from "react";
+import Vector from "../utils/Vector";
 
 interface ArrowProps {
   readonly lengthInPixels: number;
-  readonly rotationInRadians: number;
-  readonly color: string;
+  readonly position?: Vector;
+  readonly rotationInRadians?: number;
+  readonly color?: string;
 }
 
-const Arrow = (props: ArrowProps): JSX.Element => (
+const Arrow = ({
+  lengthInPixels,
+  position,
+  rotationInRadians = 0,
+  color = "black",
+}: ArrowProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 330 100"
+    viewBox="0 0 330 56"
     style={{
-      width: props.lengthInPixels,
+      width: lengthInPixels,
+      transform: `rotate(${-rotationInRadians}rad)`,
       transformOrigin: "center left",
-      transform: `rotate(${props.rotationInRadians}rad)`,
-      position: "absolute",
+      position: "relative",
+      left: position.x,
+      top: position.y,
     }}
   >
-    <defs>
-      <marker
-        id="arrowhead"
-        markerWidth="10"
-        markerHeight="7"
-        refX="0"
-        refY="3.5"
-        orient="auto"
-        fill={props.color}
-      >
-        <polygon points="0 0, 10 3.5, 0 7" />
-      </marker>
-    </defs>
-    <line
-      x1="0"
-      y1="50"
-      x2="250"
-      y2="50"
-      stroke={props.color}
-      strokeWidth="8"
-      markerEnd="url(#arrowhead)"
+    <line x1="0" y1="28" x2="250" y2="28" stroke={color} strokeWidth="8" />
+    <polygon
+      transform="translate(250, 0) scale(8)"
+      points="0 0, 10 3.5, 0 7"
+      fill={color}
     />
   </svg>
 );
