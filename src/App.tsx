@@ -1,35 +1,41 @@
-import { ipcRenderer } from "electron";
-import React, { useEffect, useState } from "react";
-import LineChart from "./LineChart/LineChart";
-import { useCounter, useFeedback } from "./utils/Hooks";
+import React from "react";
+import Appbar from "./components/AppBar";
+
+import { Grid } from "@material-ui/core";
+import Field, { FieldData } from "./RobotPose/Field";
+import FrcFieldImg from "./assets/FRC-2020-field.png";
 import Vector from "./utils/Vector";
 
+import LimeImg from "./assets/limelihgt.jpg";
+
+const fieldData: FieldData = {
+  imgSrc: FrcFieldImg,
+  imgSize: new Vector(900, 462),
+  dimensions: new Vector(15.98, 8.21),
+};
+
 const App = (): JSX.Element => {
-  const [data, addData] = useFeedback<Vector>(100);
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    setInterval(() => {
-      setCounter((prevCounter) => {
-        addData(new Vector(prevCounter, Math.random()));
-        return prevCounter + 1;
-      });
-    }, 100);
-  }, []);
-
   return (
     <>
-      <LineChart
-        datasets={[
-          {
-            data: data,
-            title: "My Data",
-          },
-        ]}
-        title="Line Chart Test"
-        xTitle="X Axis"
-        yTitle="Y Axis"
-      />
+      <Appbar />
+
+      <Grid
+        container
+        direction="row"
+        style={{
+          position: "absolute",
+          top: 70,
+          left: 0,
+        }}
+        justify="space-between"
+      >
+        <Grid item xs={6}>
+          <Field data={fieldData}></Field>
+        </Grid>
+        <Grid item xs={6}>
+          <img src={LimeImg} height={462} />
+        </Grid>
+      </Grid>
     </>
   );
 };
