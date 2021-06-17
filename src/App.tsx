@@ -6,7 +6,7 @@ import Field, { FieldData } from "./RobotPose/Field";
 import FrcFieldImg from "./assets/FRC-2020-field.png";
 import Vector from "./utils/Vector";
 
-import LimeImg from "./assets/limelihgt.jpg";
+import LimeImg from "./assets/limelight.jpg";
 
 const fieldData: FieldData = {
   imgSrc: FrcFieldImg,
