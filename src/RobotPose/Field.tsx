@@ -7,45 +7,61 @@ export interface FieldData {
   readonly dimensions: Vector;
 }
 
-interface ElementWithPosition {
-  readonly jsx: JSX.Element;
+export interface Pose {
   readonly position: Vector;
 }
 
+// Accepts pose in meter unit and a field; returns new pose in pixels.
+export type FieldConvertion = (pose: Pose, field: FieldData) => Pose;
+
+export interface FieldElement {
+  readonly pose: Pose;
+  readonly jsx: JSX.Element;
+  readonly convertToField: FieldConvertion;
+}
+
 interface FieldProps {
-  readonly fieldData: FieldData;
-  readonly children: ElementWithPosition[];
+  readonly data: FieldData;
+  readonly children?: FieldElement | FieldElement[];
 }
 
 const Field = (props: FieldProps): JSX.Element => {
+  const fieldElements: JSX.Element | JSX.Element[] =
+    props.children != undefined ? (
+      Array.isArray(props.children) ? (
+        props.children.map(
+          (element: FieldElement, index: number): JSX.Element => (
+            <element.jsx.type
+              key={index}
+              {...element.jsx.props}
+              pose={element.convertToField(element.pose, props.data)}
+            />
+          )
+        )
+      ) : (
+        <props.children.jsx.type
+          {...props.children.jsx.props}
+          pose={props.children.convertToField(props.children.pose, props.data)}
+        />
+      )
+    ) : (
+      <></>
+    );
+
   return (
     <>
       <img
-        src={props.fieldData.imgSrc}
-        alt="Image of Field"
+        src={props.data.imgSrc}
+        alt="Image of field"
         style={{
           position: "absolute",
-          width: props.fieldData.imgSize.x,
-          height: props.fieldData.imgSize.y,
+          width: props.data.imgSize.x,
+          height: props.data.imgSize.y,
+          zIndex: -100,
         }}
       />
-      {...props.children.map(
-        (el: ElementWithPosition, index: number): JSX.Element => {
-          return React.cloneElement(el.jsx, {
-            ...el.jsx.props,
-            position: new Vector(
-              (el.position.x / props.fieldData.dimensions.x) *
-                props.fieldData.imgSize.x,
 
-              props.fieldData.imgSize.y -
-                ((el.position.y / props.fieldData.dimensions.y) *
-                  props.fieldData.imgSize.y +
-                  18)
-            ),
-            key: index,
-          });
-        }
-      )}
+      {Array.isArray(fieldElements) ? { ...fieldElements } : fieldElements}
     </>
   );
 };
