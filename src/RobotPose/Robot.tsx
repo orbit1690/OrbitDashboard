@@ -18,8 +18,8 @@ const Robot = (props: RobotProps): JSX.Element => (
     style={{
       left: props.pose.position.x,
       top: props.pose.position.y,
-      position: "relative",
-      transform: `translate(-50%, -50%) rotate(${props.pose.heading}rad) `,
+      position: "absolute",
+      transform: `translate(-50%, -50%) rotate(-${props.pose.heading}rad) `,
       transformOrigin: "center",
       width: props.pose.size.x,
       height: props.pose.size.y,
@@ -57,7 +57,7 @@ const convertRobotToField: FieldConvertion = (
 const fieldRobot = (props: RobotProps, pose: RobotPose): FieldElement => {
   return {
     pose,
-    jsx: <Robot {...props} key="robot" />,
+    jsx: <Robot {...props} />,
     convertToField: convertRobotToField,
   };
 };
