@@ -1,5 +1,5 @@
 import React from "react";
-import Appbar from "./components/AppBar";
+import AppBar from "./components/AppBar";
 
 import { Grid } from "@material-ui/core";
 import Field, { FieldData } from "./RobotPose/Field";
@@ -17,7 +17,7 @@ const fieldData: FieldData = {
 const App = (): JSX.Element => {
   return (
     <>
-      <Appbar />
+      <AppBar />
 
       <Grid
         container
