@@ -61,7 +61,7 @@ const Field = (props: FieldProps): JSX.Element => {
         }}
       />
 
-      {Array.isArray(fieldElements) ? { ...fieldElements } : fieldElements}
+      {fieldElements}
     </>
   );
 };
