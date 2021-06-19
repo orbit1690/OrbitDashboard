@@ -41,15 +41,7 @@ const LimeAndField = (): JSX.Element => {
   };
 
   return (
-    <Grid
-      container
-      style={{
-        position: "fixed",
-        left: 0,
-        top: 69,
-        height,
-      }}
-    >
+    <Grid container>
       <Grid item xs={8}>
         <Field data={fieldData}>
           {fieldRobot({ color: "black" }, robotPose)}
