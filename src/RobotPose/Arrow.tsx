@@ -1,6 +1,6 @@
 import React from "react";
 import Vector from "../utils/Vector";
-import { FieldConvertion, FieldData, FieldElement, Pose } from "./Field";
+import { FieldConversion, FieldData, FieldElement, Pose } from "./Field";
 
 export interface ArrowPose extends Pose {
   readonly vector: Vector;
@@ -40,7 +40,7 @@ export const Arrow = (props: ArrowProps): JSX.Element => (
   </svg>
 );
 
-const convertArrowToField: FieldConvertion = (
+const convertArrowToField: FieldConversion = (
   pose: ArrowPose,
   field: FieldData
 ): ArrowPose => {

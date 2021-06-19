@@ -1,6 +1,6 @@
 import React from "react";
 import Vector from "../utils/Vector";
-import { Pose, FieldData, FieldConvertion, FieldElement } from "./Field";
+import { Pose, FieldData, FieldConversion, FieldElement } from "./Field";
 
 export interface RobotPose extends Pose {
   readonly heading: number;
@@ -33,7 +33,7 @@ const Robot = (props: RobotProps): JSX.Element => (
   </svg>
 );
 
-const convertRobotToField: FieldConvertion = (
+const convertRobotToField: FieldConversion = (
   pose: RobotPose,
   field: FieldData
 ): RobotPose => {

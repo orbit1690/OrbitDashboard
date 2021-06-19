@@ -12,12 +12,12 @@ export interface Pose {
 }
 
 // Accepts pose in meter unit and a field; returns new pose in pixels.
-export type FieldConvertion = (pose: Pose, field: FieldData) => Pose;
+export type FieldConversion = (pose: Pose, field: FieldData) => Pose;
 
 export interface FieldElement {
   readonly pose: Pose;
   readonly jsx: JSX.Element;
-  readonly convertToField: FieldConvertion;
+  readonly convertToField: FieldConversion;
 }
 
 interface FieldProps {

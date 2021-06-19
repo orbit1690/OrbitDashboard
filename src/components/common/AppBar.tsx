@@ -1,5 +1,5 @@
 import React from "react";
-import OrbitLogo from "../assets/OrbitLogo";
+import OrbitLogo from "../../assets/OrbitLogo";
 import {
   AppBar as MaterialAppBar,
   IconButton,
