@@ -16,7 +16,25 @@ const GreenSwitch = withStyles({
   track: {},
 })(Switch);
 
-const ReadyToShoots = (): JSX.Element => {
+interface SingleReadyProps {
+  readonly label: string;
+  readonly state: boolean;
+}
+
+const SingleReady = (props: SingleReadyProps): JSX.Element => (
+  <Grid container direction="row" alignItems="center" justify="space-between">
+    <Typography>{props.label}</Typography>
+    <GreenSwitch checked={props.state} />
+  </Grid>
+);
+
+interface ReadyToShootsProps {
+  readonly limeReady: boolean;
+  readonly armReady: boolean;
+  readonly wheelsReady: boolean;
+}
+
+const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
   return (
     <Paper elevation={10}>
       <Grid
@@ -28,34 +46,11 @@ const ReadyToShoots = (): JSX.Element => {
         <Grid item>
           <Typography variant="h5">Ready To Shoot:</Typography>
         </Grid>
+
         <Grid item>
-          <Grid
-            container
-            direction="row"
-            alignItems="center"
-            justify="space-between"
-          >
-            <Typography>Lime:</Typography>
-            <GreenSwitch />
-          </Grid>
-          <Grid
-            container
-            direction="row"
-            alignItems="center"
-            justify="space-between"
-          >
-            <Typography>Arm:</Typography>
-            <GreenSwitch />
-          </Grid>
-          <Grid
-            container
-            direction="row"
-            alignItems="center"
-            justify="space-between"
-          >
-            <Typography>Wheels:</Typography>
-            <GreenSwitch />
-          </Grid>
+          <SingleReady label="Lime:" state={props.limeReady} />
+          <SingleReady label="Arm:" state={props.armReady} />
+          <SingleReady label="Wheels:" state={props.wheelsReady} />
         </Grid>
       </Grid>
     </Paper>
