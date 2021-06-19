@@ -1,6 +1,6 @@
 {
-  "name": "Orbit Dashboard",
-  "productName": "Orbit Dashboard",
+  "name": "Orbit-Dashboard",
+  "productName": "Orbit-Dashboard",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Orbit Dashboard"
+            "name": "Orbit-Dashboard"
           }
         },
         {
@@ -85,6 +85,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "canvasjs-react-charts": "^1.0.5",
