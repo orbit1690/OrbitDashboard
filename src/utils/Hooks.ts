@@ -71,3 +71,8 @@ export const useFeedback = <T>(
 
   return [data, addData];
 };
+
+// Returns a function that calls setState, which causes the component to rerender
+export const useRerender = (): (() => void) => {
+  return useToggle()[1];
+};
