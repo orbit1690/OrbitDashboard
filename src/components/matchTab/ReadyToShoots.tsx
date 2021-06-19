@@ -18,7 +18,7 @@ const GreenSwitch = withStyles({
 
 const ReadyToShoots = (): JSX.Element => {
   return (
-    <Paper elevation={10} style={{ marginTop: 10 }}>
+    <Paper elevation={10}>
       <Grid
         container
         direction="column"
