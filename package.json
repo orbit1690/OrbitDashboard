@@ -1,6 +1,6 @@
 {
-  "name": "Orbit-Dashboard",
-  "productName": "Orbit-Dashboard",
+  "name": "Orbit Dashboard",
+  "productName": "Orbit Dashboard",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Orbit-Dashboard"
+            "name": "Orbit Dashboard"
           }
         },
         {
