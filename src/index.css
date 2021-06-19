@@ -6,6 +6,7 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+  overflow: hidden;
 }
 
 /* Remove link to CanvasJS-charts */
