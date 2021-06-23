@@ -44,7 +44,7 @@ interface ReadyToShootsProps {
 
 const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
   return (
-    <Card raised elevation={10}>
+    <Card variant="outlined" style={{ height: "100%" }}>
       <CardActionArea>
         <CardHeader title="Ready to shoot" />
       </CardActionArea>

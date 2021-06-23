@@ -20,7 +20,7 @@ const AutoChooser = (): JSX.Element => {
   const [auto, setAuto] = useState(Autonomous.Left);
 
   return (
-    <Card raised elevation={10}>
+    <Card variant="outlined" style={{ height: "100%" }}>
       <CardActionArea>
         <CardHeader title="Autonomous" />
       </CardActionArea>

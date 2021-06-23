@@ -4,7 +4,7 @@ import { Card, CardHeader, CardActionArea } from "@material-ui/core";
 import LimeImg from "../../../assets/limelight.jpg";
 
 const Lime = (): JSX.Element => (
-  <Card raised elevation={10}>
+  <Card variant="outlined">
     <CardActionArea>
       <CardHeader title="Lime" />
     </CardActionArea>

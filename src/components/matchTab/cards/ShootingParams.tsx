@@ -39,7 +39,7 @@ const VelInput = (): JSX.Element => (
 
 const ShootingParams = (): JSX.Element => {
   return (
-    <Card raised elevation={10}>
+    <Card variant="outlined">
       <CardActionArea>
         <CardHeader title="Shooting Parameters" />
       </CardActionArea>

@@ -7,7 +7,7 @@ import Vector from "../../../utils/Vector";
 import ExampleField from "../examples/ExampleField";
 
 const FieldCard = (props: { widthXs: number }): JSX.Element => (
-  <Card raised elevation={10}>
+  <Card variant="outlined">
     <CardActionArea>
       <CardHeader title="Robot Pose" />
     </CardActionArea>
