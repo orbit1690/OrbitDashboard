@@ -80,9 +80,8 @@ export const useNetworkTable = <T>(entry: string, defaultValue: T): T => {
     ipcRenderer.on(`NTEntry ${entry}`, handleIpcReply);
 
     // Holds the ntListener in order to remove it when the component is unmounted from the DOM.
-    const networkTableListener: React.MutableRefObject<ntClient.Listener> = useRef<ntClient.Listener>(
-      null
-    );
+    const networkTableListener: React.MutableRefObject<ntClient.Listener> =
+      useRef<ntClient.Listener>(null);
 
     // Set the networkTableListener to the listener returned from the ntClient.
     ipcRenderer.on(
