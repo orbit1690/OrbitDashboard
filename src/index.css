@@ -13,3 +13,7 @@ body {
 .canvasjs-chart-credit {
   visibility: hidden;
 }
+
+.MuiPaper-rounded {
+  border-radius: 15px !important;
+}

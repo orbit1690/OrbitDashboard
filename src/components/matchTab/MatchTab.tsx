@@ -1,38 +1,18 @@
 import React from "react";
 
-import LimeAndField from "./LimeAndField";
+import { Grid, Box } from "@material-ui/core";
 
-import { Grid } from "@material-ui/core";
-
-import ReadyToShoots from "./ReadyToShoots";
-import ShootingParams from "./ShootingParams";
-import AutoChooser from "./AutoChooser";
+import FirstRow from "./layout/FirstRow";
+import SecondRow from "./layout/SecondRow";
 
 const MatchTab = (): JSX.Element => {
   return (
-    <Grid container direction="column">
-      <LimeAndField />
-
-      <Grid
-        container
-        direction="row-reverse"
-        justify="space-around"
-        spacing={5}
-        style={{ marginTop: 16 }}
-      >
-        <Grid item>
-          <ReadyToShoots limeReady={true} armReady={true} wheelsReady={false} />
-        </Grid>
-
-        <Grid item>
-          <ShootingParams />
-        </Grid>
-
-        <Grid item>
-          <AutoChooser />
-        </Grid>
+    <Box marginY={1} width={1}>
+      <Grid container direction="column" justify="space-around" spacing={2}>
+        <FirstRow />
+        <SecondRow />
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 

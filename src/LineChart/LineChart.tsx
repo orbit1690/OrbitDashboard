@@ -18,7 +18,7 @@ interface LineChartProps {
 const chartOptions: {} = {
   animationEnabled: true,
   zoomEnabled: true,
-  theme: "dark2",
+  // theme: "dark2",
   exportEnabled: true,
 };
 

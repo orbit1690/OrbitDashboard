@@ -49,7 +49,13 @@ const Field = (props: FieldProps): JSX.Element => {
     );
 
   return (
-    <>
+    <div
+      style={{
+        position: "relative",
+        width: props.data.imgSize.x,
+        height: props.data.imgSize.y,
+      }}
+    >
       <img
         src={props.data.imgSrc}
         alt="Image of field"
@@ -57,12 +63,11 @@ const Field = (props: FieldProps): JSX.Element => {
           position: "absolute",
           width: props.data.imgSize.x,
           height: props.data.imgSize.y,
-          zIndex: -100,
         }}
       />
 
       {fieldElements}
-    </>
+    </div>
   );
 };
 

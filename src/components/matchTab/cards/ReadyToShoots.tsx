@@ -1,6 +1,14 @@
 import React from "react";
 
-import { Grid, Switch, withStyles, Typography, Paper } from "@material-ui/core";
+import {
+  Grid,
+  Switch,
+  withStyles,
+  Typography,
+  Card,
+  CardActionArea,
+  CardHeader,
+} from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 
 const GreenSwitch = withStyles({
@@ -36,24 +44,21 @@ interface ReadyToShootsProps {
 
 const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
   return (
-    <Paper elevation={10}>
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        style={{ padding: 16 }}
-      >
-        <Grid item>
-          <Typography variant="h5">Ready To Shoot:</Typography>
-        </Grid>
+    <Card raised elevation={10}>
+      <CardActionArea>
+        <CardHeader title="Ready to shoot" />
+      </CardActionArea>
 
-        <Grid item>
-          <SingleReady label="Lime:" state={props.limeReady} />
-          <SingleReady label="Arm:" state={props.armReady} />
-          <SingleReady label="Wheels:" state={props.wheelsReady} />
+      <CardActionArea>
+        <Grid container direction="column" alignItems="center">
+          <Grid item>
+            <SingleReady label="Lime:" state={props.limeReady} />
+            <SingleReady label="Arm:" state={props.armReady} />
+            <SingleReady label="Wheels:" state={props.wheelsReady} />
+          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </CardActionArea>
+    </Card>
   );
 };
 
