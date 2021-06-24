@@ -7,10 +7,14 @@ import SecondRow from "./layout/SecondRow";
 
 const MatchTab = (): JSX.Element => {
   return (
-    <Box marginY={1} width={1}>
-      <Grid container direction="column" justify="space-around" spacing={2}>
-        <FirstRow />
-        <SecondRow />
+    <Box marginY={2} width={1} marginX={1}>
+      <Grid container direction="column">
+        <Grid item>
+          <FirstRow />
+        </Grid>
+        <Grid item>
+          <SecondRow />
+        </Grid>
       </Grid>
     </Box>
   );
