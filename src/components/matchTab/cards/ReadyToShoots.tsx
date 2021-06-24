@@ -1,46 +1,8 @@
 import React from "react";
 
-import {
-  Grid,
-  Switch,
-  withStyles,
-  Typography,
-  Card,
-  CardActionArea,
-  CardHeader,
-} from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+import { Grid, Card, CardActionArea, CardHeader } from "@material-ui/core";
 
-const GreenSwitch = withStyles({
-  switchBase: {
-    "&$checked": {
-      color: green[500],
-    },
-    "&$checked + $track": {
-      backgroundColor: green[500],
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
-
-interface SingleReadyProps {
-  readonly label: string;
-  readonly state: boolean;
-}
-
-const SingleReady = (props: SingleReadyProps): JSX.Element => (
-  <Grid
-    container
-    direction="row"
-    alignItems="center"
-    justify="space-between"
-    wrap="nowrap"
-  >
-    <Typography>{props.label}</Typography>
-    <GreenSwitch checked={props.state} />
-  </Grid>
-);
+import TextAndSwitch from "../../common/TextAndSwitch";
 
 interface ReadyToShootsProps {
   readonly limeReady: boolean;
@@ -56,9 +18,9 @@ const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
 
         <Grid container item alignItems="center" justify="center">
           <Grid item>
-            <SingleReady label="Lime:" state={props.limeReady} />
-            <SingleReady label="Arm:" state={props.armReady} />
-            <SingleReady label="Wheels:" state={props.wheelsReady} />
+            <TextAndSwitch label="Lime:" checked={props.limeReady} />
+            <TextAndSwitch label="Arm:" checked={props.armReady} />
+            <TextAndSwitch label="Wheels:" checked={props.wheelsReady} />
           </Grid>
         </Grid>
       </Card>
