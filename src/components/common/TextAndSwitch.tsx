@@ -25,7 +25,7 @@ interface TextAndSwitchProps {
   readonly checked: boolean;
 }
 
-const TextAndSwitch = (props: TextAndSwitchProps): JSX.Element => (
+export const TextAndSwitchGreen = (props: TextAndSwitchProps): JSX.Element => (
   <Grid
     container
     direction="row"
@@ -38,4 +38,15 @@ const TextAndSwitch = (props: TextAndSwitchProps): JSX.Element => (
   </Grid>
 );
 
-export default TextAndSwitch;
+export const TextAndSwitchRed = (props: TextAndSwitchProps): JSX.Element => (
+  <Grid
+    container
+    direction="row"
+    alignItems="center"
+    justify="space-between"
+    wrap="nowrap"
+  >
+    <Typography>{props.label}</Typography>
+    <RedSwitch checked={props.checked} />
+  </Grid>
+);

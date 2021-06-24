@@ -2,7 +2,7 @@ import React from "react";
 
 import { Grid, Card, CardActionArea, CardHeader } from "@material-ui/core";
 
-import TextAndSwitch from "../../common/TextAndSwitch";
+import { TextAndSwitchGreen } from "../../common/TextAndSwitch";
 
 interface ReadyToShootsProps {
   readonly limeReady: boolean;
@@ -18,9 +18,9 @@ const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
 
         <Grid container item alignItems="center" justify="center">
           <Grid item>
-            <TextAndSwitch label="Lime:" checked={props.limeReady} />
-            <TextAndSwitch label="Arm:" checked={props.armReady} />
-            <TextAndSwitch label="Wheels:" checked={props.wheelsReady} />
+            <TextAndSwitchGreen label="Lime:" checked={props.limeReady} />
+            <TextAndSwitchGreen label="Arm:" checked={props.armReady} />
+            <TextAndSwitchGreen label="Wheels:" checked={props.wheelsReady} />
           </Grid>
         </Grid>
       </Card>
