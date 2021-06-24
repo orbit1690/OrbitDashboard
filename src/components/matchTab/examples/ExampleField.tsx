@@ -16,7 +16,7 @@ const ExampleField = (props: { widthXs: number }): JSX.Element => {
     window.addEventListener("resize", rerender);
   }, []);
 
-  const width: number = (props.widthXs / 12) * window.innerWidth;
+  const width: number = (props.widthXs / 12) * window.innerWidth - 8;
 
   const height: number = (8.21 / 15.98) * width;
 
