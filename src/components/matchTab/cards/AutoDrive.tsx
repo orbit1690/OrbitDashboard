@@ -6,9 +6,7 @@ const AutoDrive = (): JSX.Element => (
   <Card variant="outlined">
     <CardActionArea>
       <CardHeader title="Auto Drive Active" />
-    </CardActionArea>
 
-    <CardActionArea>
       <Grid container justify="center" alignItems="center">
         <Grid item>
           <GreenSwitch checked={true} />
