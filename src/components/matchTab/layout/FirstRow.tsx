@@ -2,8 +2,11 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 
 import FieldCard from "../cards/FieldCard";
-import AutoAndReady from "./AutoAndReady";
 import ShootingParams from "../cards/ShootingParams";
+import ReadyToShoots from "../cards/ReadyToShoots";
+import AutoChooser from "../cards/AutoChooser";
+import RobotState, { RobotStates } from "../cards/RobotState";
+import Lime from "../cards/Lime";
 
 const FirstRow = (): JSX.Element => (
   <Grid direction="row" item container justify="space-around">
@@ -11,12 +14,32 @@ const FirstRow = (): JSX.Element => (
       <FieldCard widthXs={5} />
     </Grid>
 
-    <Grid item xs={2}>
-      <AutoAndReady />
-    </Grid>
+    <Grid
+      item
+      container
+      direction="column"
+      xs={6}
+      justify="flex-start"
+      spacing={2}
+      style={{ height: "100%" }}
+    >
+      <Grid item container direction="row" justify="flex-start" spacing={2}>
+        <Grid item xs={4}>
+          <ReadyToShoots limeReady armReady wheelsReady={false} />
+        </Grid>
+        <Grid item xs={6}>
+          <ShootingParams />
+        </Grid>
+      </Grid>
 
-    <Grid item xs={3}>
-      <ShootingParams />
+      <Grid item container direction="row" justify="flex-start" spacing={2}>
+        <Grid item xs={4}>
+          <AutoChooser />
+        </Grid>
+        <Grid item xs={6}>
+          <RobotState state={RobotStates.TRAVEL} />
+        </Grid>
+      </Grid>
     </Grid>
   </Grid>
 );
