@@ -1,20 +1,24 @@
 import React from "react";
 
-import { green } from "@material-ui/core/colors";
+import { green, red } from "@material-ui/core/colors";
 import { withStyles, Switch, Grid, Typography } from "@material-ui/core";
 
-const GreenSwitch = withStyles({
-  switchBase: {
-    "&$checked": {
-      color: green[500],
+const coloredSwitch = (color: any) =>
+  withStyles({
+    switchBase: {
+      "&$checked": {
+        color: color[500],
+      },
+      "&$checked + $track": {
+        backgroundColor: color[500],
+      },
     },
-    "&$checked + $track": {
-      backgroundColor: green[500],
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
+    checked: {},
+    track: {},
+  })(Switch);
+
+export const GreenSwitch = coloredSwitch(green);
+export const RedSwitch = coloredSwitch(red);
 
 const TextAndSwitch = (props: {
   label: string;
