@@ -2,6 +2,19 @@ import React from "react";
 import { Box, Grid } from "@material-ui/core";
 import Lime from "../cards/Lime";
 import AutoDrive from "../cards/AutoDrive";
+import Faults from "../cards/Faults";
+
+const AutoDriveAndFaults = (): JSX.Element => (
+  <Grid container direction="column" justify="flex-start" spacing={2}>
+    <Grid item>
+      <AutoDrive />
+    </Grid>
+
+    <Grid item>
+      <Faults />
+    </Grid>
+  </Grid>
+);
 
 const SecondRow = (): JSX.Element => (
   <Box marginLeft={4} marginTop={-3}>
@@ -9,8 +22,9 @@ const SecondRow = (): JSX.Element => (
       <Grid item xs={3}>
         <Lime />
       </Grid>
+
       <Grid item xs={2}>
-        <AutoDrive />
+        <AutoDriveAndFaults />
       </Grid>
     </Grid>
   </Box>
