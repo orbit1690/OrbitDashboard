@@ -16,17 +16,15 @@ export enum RobotStates {
   FEEDER = "Feeder",
 }
 const RobotState = (props: { readonly state: RobotStates }): JSX.Element => (
-  <Card variant="outlined" style={{ height: "100%" }}>
-    <CardActionArea>
+  <CardActionArea style={{ height: "100%", borderRadius: 15 }}>
+    <Card variant="outlined" style={{ height: "100%" }}>
       <CardHeader title="Robot State" />
-    </CardActionArea>
 
-    <CardActionArea style={{ height: "55%" }}>
       <Grid container justify="center" alignItems="center">
-        <Typography variant="h5">State: {props.state.toString()}</Typography>
+        <Typography variant="h5">State: {props.state}</Typography>
       </Grid>
-    </CardActionArea>
-  </Card>
+    </Card>
+  </CardActionArea>
 );
 
 export default RobotState;
