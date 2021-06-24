@@ -20,10 +20,12 @@ const coloredSwitch = (color: any) =>
 export const GreenSwitch = coloredSwitch(green);
 export const RedSwitch = coloredSwitch(red);
 
-const TextAndSwitch = (props: {
-  label: string;
-  checked: boolean;
-}): JSX.Element => (
+interface TextAndSwitchProps {
+  readonly label: string;
+  readonly checked: boolean;
+}
+
+const TextAndSwitch = (props: TextAndSwitchProps): JSX.Element => (
   <Grid
     container
     direction="row"
