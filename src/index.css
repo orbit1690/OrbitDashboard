@@ -14,6 +14,6 @@ body {
   visibility: hidden;
 }
 
-.MuiPaper-rounded {
+.MuiPaper-outlined {
   border-radius: 15px !important;
 }
