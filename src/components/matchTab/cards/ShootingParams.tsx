@@ -11,14 +11,15 @@ const AngleInput = (): JSX.Element => (
   <Grid
     container
     alignItems="center"
-    justify="space-evenly"
+    justify="flex-start"
     direction="row"
-    spacing={1}
+    spacing={3}
+    wrap="nowrap"
   >
-    <Grid item>
+    <Grid item xs={2}>
       <img src={AngleImg} width={35} />
     </Grid>
-    <Grid item>
+    <Grid item xs={10}>
       <TextField label="Angle:" type="number" variant="outlined" />
     </Grid>
   </Grid>
@@ -28,12 +29,17 @@ const VelInput = (): JSX.Element => (
   <Grid
     container
     alignItems="center"
-    justify="space-evenly"
+    justify="flex-start"
     direction="row"
-    spacing={1}
+    spacing={3}
+    wrap="nowrap"
   >
-    <SpeedIcon fontSize="large" />
-    <TextField label="Velocity:" type="number" variant="outlined" />
+    <Grid item xs={2}>
+      <SpeedIcon fontSize="large" />
+    </Grid>
+    <Grid item xs={10}>
+      <TextField label="Velocity:" type="number" variant="outlined" />
+    </Grid>
   </Grid>
 );
 
@@ -45,7 +51,7 @@ const ShootingParams = (): JSX.Element => {
       </CardActionArea>
 
       <Box padding={2}>
-        <Grid container direction="column" spacing={2}>
+        <Grid item container direction="column" alignItems="center" spacing={2}>
           <Grid item>
             <AngleInput />
           </Grid>
