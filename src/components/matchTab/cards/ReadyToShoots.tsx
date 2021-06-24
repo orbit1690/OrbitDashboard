@@ -30,7 +30,13 @@ interface SingleReadyProps {
 }
 
 const SingleReady = (props: SingleReadyProps): JSX.Element => (
-  <Grid container direction="row" alignItems="center" justify="space-between">
+  <Grid
+    container
+    direction="row"
+    alignItems="center"
+    justify="space-between"
+    wrap="nowrap"
+  >
     <Typography>{props.label}</Typography>
     <GreenSwitch checked={props.state} />
   </Grid>
@@ -44,21 +50,19 @@ interface ReadyToShootsProps {
 
 const ReadyToShoots = (props: ReadyToShootsProps): JSX.Element => {
   return (
-    <Card variant="outlined" style={{ height: "100%" }}>
-      <CardActionArea>
+    <CardActionArea style={{ height: "100%", borderRadius: 15 }}>
+      <Card variant="outlined" style={{ height: "100%" }}>
         <CardHeader title="Ready to shoot" />
-      </CardActionArea>
 
-      <CardActionArea>
-        <Grid container direction="column" alignItems="center">
+        <Grid container item alignItems="center" justify="center">
           <Grid item>
             <SingleReady label="Lime:" state={props.limeReady} />
             <SingleReady label="Arm:" state={props.armReady} />
             <SingleReady label="Wheels:" state={props.wheelsReady} />
           </Grid>
         </Grid>
-      </CardActionArea>
-    </Card>
+      </Card>
+    </CardActionArea>
   );
 };
 
