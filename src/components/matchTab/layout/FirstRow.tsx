@@ -16,12 +16,13 @@ const FirstRow = (): JSX.Element => (
     <Grid
       item
       container
-      direction="column"
+      direction="column" // column of two sub-rows
       xs={6}
       justify="flex-start"
       spacing={2}
       style={{ height: "100%" }}
     >
+      {/* first sub-row */}
       <Grid item container direction="row" justify="flex-start" spacing={2}>
         <Grid item xs={4}>
           <AutoChooser />
@@ -31,6 +32,7 @@ const FirstRow = (): JSX.Element => (
         </Grid>
       </Grid>
 
+      {/* second sub-row */}
       <Grid item container direction="row" justify="flex-start" spacing={2}>
         <Grid item xs={4}>
           <ReadyToShoots limeReady armReady wheelsReady={false} />
