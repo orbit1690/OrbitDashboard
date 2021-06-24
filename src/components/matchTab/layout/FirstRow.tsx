@@ -6,7 +6,6 @@ import ShootingParams from "../cards/ShootingParams";
 import ReadyToShoots from "../cards/ReadyToShoots";
 import AutoChooser from "../cards/AutoChooser";
 import RobotState, { RobotStates } from "../cards/RobotState";
-import Lime from "../cards/Lime";
 
 const FirstRow = (): JSX.Element => (
   <Grid direction="row" item container justify="space-around">
@@ -25,19 +24,19 @@ const FirstRow = (): JSX.Element => (
     >
       <Grid item container direction="row" justify="flex-start" spacing={2}>
         <Grid item xs={4}>
-          <ReadyToShoots limeReady armReady wheelsReady={false} />
+          <AutoChooser />
         </Grid>
         <Grid item xs={6}>
-          <ShootingParams />
+          <RobotState state={RobotStates.TRAVEL} />
         </Grid>
       </Grid>
 
       <Grid item container direction="row" justify="flex-start" spacing={2}>
         <Grid item xs={4}>
-          <AutoChooser />
+          <ReadyToShoots limeReady armReady wheelsReady={false} />
         </Grid>
         <Grid item xs={6}>
-          <RobotState state={RobotStates.TRAVEL} />
+          <ShootingParams />
         </Grid>
       </Grid>
     </Grid>
