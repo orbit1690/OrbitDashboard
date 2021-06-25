@@ -16,9 +16,17 @@ const FieldCard = (props: { widthXs: number }): JSX.Element => (
         event: React.MouseEvent<HTMLButtonElement, MouseEvent>
       ): void => {
         const rect: DOMRect = event.currentTarget.getBoundingClientRect();
+
         const x: number = event.clientX - rect.left;
         const y: number = rect.height - (event.clientY - rect.top);
-        console.log(new Vector(x, y)); // TODO send click position to robot
+
+        const fieldWidth: number = (5 / 12) * window.innerWidth - 8;
+        const fieldHeight: number = (8.21 / 15.98) * fieldWidth;
+
+        const xMeter: number = (x * 15.98) / fieldWidth;
+        const yMeter: number = (y * 8.21) / fieldHeight;
+
+        console.log(new Vector(xMeter, yMeter)); // TODO send click position to robot
       }}
     >
       {/* TODO use real field */}
