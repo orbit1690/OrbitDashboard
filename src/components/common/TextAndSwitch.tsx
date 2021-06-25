@@ -33,7 +33,7 @@ export const TextAndSwitchGreen = (props: TextAndSwitchProps): JSX.Element => (
     justify="space-between"
     wrap="nowrap"
   >
-    <Typography>{props.label}</Typography>
+    <Typography variant="h6">{props.label}</Typography>
     <GreenSwitch checked={props.checked} />
   </Grid>
 );
@@ -46,7 +46,7 @@ export const TextAndSwitchRed = (props: TextAndSwitchProps): JSX.Element => (
     justify="space-between"
     wrap="nowrap"
   >
-    <Typography>{props.label}</Typography>
+    <Typography variant="h6">{props.label}</Typography>
     <RedSwitch checked={props.checked} />
   </Grid>
 );
