@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
       <Grid
         container
         style={{
-          position: "absolute",
+          position: "fixed",
           left: 0,
           top: 69 /* 69 is the height of the AppBar */,
         }}
