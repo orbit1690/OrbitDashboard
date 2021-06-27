@@ -51,7 +51,7 @@ const ShootingParams = (): JSX.Element => {
       </CardActionArea>
 
       <Box padding={2}>
-        <Grid item container direction="column" alignItems="center" spacing={2}>
+        <Grid item container direction="column" alignItems="center" spacing={1}>
           <Grid item>
             <AngleInput />
           </Grid>
