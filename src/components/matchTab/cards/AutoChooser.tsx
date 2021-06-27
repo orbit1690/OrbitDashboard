@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 
-import {
-  Select,
-  Grid,
-  MenuItem,
-  Card,
-  CardHeader,
-  CardActionArea,
-  Box,
-} from "@material-ui/core";
+import { Select, Grid, MenuItem, Box } from "@material-ui/core";
 
 // TODO come up with real names
 enum Autonomous {
@@ -16,15 +8,13 @@ enum Autonomous {
   Left,
 }
 
+import Tile from "../../common/Tile";
+
 const AutoChooser = (): JSX.Element => {
   const [auto, setAuto] = useState(Autonomous.Left);
 
   return (
-    <Card variant="outlined" style={{ height: "100%" }}>
-      <CardActionArea>
-        <CardHeader title="Autonomous" />
-      </CardActionArea>
-
+    <Tile title="Autonomous">
       <Box padding={1}>
         <Grid container alignItems="center" justify="center">
           <Select
@@ -37,7 +27,7 @@ const AutoChooser = (): JSX.Element => {
           </Select>
         </Grid>
       </Box>
-    </Card>
+    </Tile>
   );
 };
 

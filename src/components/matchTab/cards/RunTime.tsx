@@ -1,25 +1,16 @@
 import React from "react";
 
-import {
-  Card,
-  CardHeader,
-  CardActionArea,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+import ClickableTile from "../../common/ClickableTile";
 
 const RunTime = (): JSX.Element => (
-  <Card variant="outlined" style={{ height: "100%" }}>
-    <CardActionArea style={{ height: "100%" }}>
-      <CardHeader title="Cycle Time" />
-
-      <Grid container justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h6">{20.0000001}ms</Typography>
-        </Grid>
+  <ClickableTile title="Cycle Time">
+    <Grid container justify="center" alignItems="center">
+      <Grid item>
+        <Typography variant="h6">{20.0000001}ms</Typography>
       </Grid>
-    </CardActionArea>
-  </Card>
+    </Grid>
+  </ClickableTile>
 );
 
 export default RunTime;

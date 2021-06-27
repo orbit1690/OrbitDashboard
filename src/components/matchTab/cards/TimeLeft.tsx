@@ -1,25 +1,16 @@
 import React from "react";
 
-import {
-  Card,
-  CardActionArea,
-  CardHeader,
-  Typography,
-  Grid,
-} from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
+import ClickableTile from "../../common/ClickableTile";
 
 const TimeLeft = (): JSX.Element => (
-  <Card variant="outlined" style={{ height: "100%" }}>
-    <CardActionArea style={{ height: "100%" }}>
-      <CardHeader title="Time Left" />
-
-      <Grid container justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h6">Teleop: {135}</Typography>
-        </Grid>
+  <ClickableTile title="Time Left">
+    <Grid container justify="center" alignItems="center">
+      <Grid item>
+        <Typography variant="h6">Teleop: {135}</Typography>
       </Grid>
-    </CardActionArea>
-  </Card>
+    </Grid>
+  </ClickableTile>
 );
 
 export default TimeLeft;

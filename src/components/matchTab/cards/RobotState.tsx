@@ -1,12 +1,8 @@
 import React from "react";
 
-import {
-  Card,
-  CardActionArea,
-  CardHeader,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+
+import ClickableTile from "../../common/ClickableTile";
 
 export enum RobotStates {
   TRAVEL = "Travel",
@@ -16,15 +12,13 @@ export enum RobotStates {
   FEEDER = "Feeder",
 }
 const RobotState = (props: { readonly state: RobotStates }): JSX.Element => (
-  <CardActionArea style={{ height: "100%", borderRadius: 15 }}>
-    <Card variant="outlined" style={{ height: "100%" }}>
-      <CardHeader title="Robot State" />
-
-      <Grid container justify="center" alignItems="center">
+  <ClickableTile title="Robot State">
+    <Grid container justify="center">
+      <Grid item>
         <Typography variant="h5">State: {props.state}</Typography>
       </Grid>
-    </Card>
-  </CardActionArea>
+    </Grid>
+  </ClickableTile>
 );
 
 export default RobotState;

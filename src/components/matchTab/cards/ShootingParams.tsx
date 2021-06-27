@@ -6,6 +6,7 @@ import { Grid, Card, TextField, CardHeader, Box } from "@material-ui/core";
 
 import AngleImg from "../../../assets/angle.png";
 import { CardActionArea } from "@material-ui/core";
+import Tile from "../../common/Tile";
 
 const AngleInput = (): JSX.Element => (
   <Grid
@@ -35,7 +36,7 @@ const VelInput = (): JSX.Element => (
     wrap="nowrap"
   >
     <Grid item xs={2}>
-      <SpeedIcon fontSize="large" />
+      <SpeedIcon fontSize="large" style={{ color: "#000" }} />
     </Grid>
     <Grid item xs={10}>
       <TextField label="Velocity:" type="number" variant="outlined" />
@@ -45,11 +46,7 @@ const VelInput = (): JSX.Element => (
 
 const ShootingParams = (): JSX.Element => {
   return (
-    <Card variant="outlined">
-      <CardActionArea>
-        <CardHeader title="Shooting Parameters" />
-      </CardActionArea>
-
+    <Tile title="Shooting Parameters">
       <Box padding={2}>
         <Grid item container direction="column" alignItems="center" spacing={1}>
           <Grid item>
@@ -60,7 +57,7 @@ const ShootingParams = (): JSX.Element => {
           </Grid>
         </Grid>
       </Box>
-    </Card>
+    </Tile>
   );
 };
 

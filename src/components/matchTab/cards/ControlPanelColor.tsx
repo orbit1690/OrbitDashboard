@@ -1,22 +1,18 @@
 import React from "react";
 
-import { Card, CardHeader, CardActionArea, Grid } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+import ClickableTile from "../../common/ClickableTile";
 
 const ControlPanelColor = (): JSX.Element => (
-  <Card variant="outlined" style={{ height: "100%" }}>
-    <CardActionArea style={{ height: "100%" }}>
-      <CardHeader title="Control Panel" />
-
-      <Grid container justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h6">
-            Color: <span style={{ color: "purple" }}>Purple</span>
-          </Typography>
-        </Grid>
+  <ClickableTile title="Control Panel">
+    <Grid container justify="center" alignItems="center">
+      <Grid item>
+        <Typography variant="h6">
+          Color: <span style={{ color: "purple" }}>Purple</span>
+        </Typography>
       </Grid>
-    </CardActionArea>
-  </Card>
+    </Grid>
+  </ClickableTile>
 );
 
 export default ControlPanelColor;

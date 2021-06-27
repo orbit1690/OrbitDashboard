@@ -1,27 +1,18 @@
 import React from "react";
 
-import {
-  Card,
-  CardHeader,
-  CardActionArea,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { TextAndSwitchGreen } from "../../common/TextAndSwitch";
+import ClickableTile from "../../common/ClickableTile";
 
 const LimeData = (): JSX.Element => (
-  <Card variant="outlined" style={{ height: "100%" }}>
-    <CardActionArea style={{ height: "100%" }}>
-      <CardHeader title="Lime Data" />
-
-      <Grid container item alignItems="center" justify="center">
-        <Grid item>
-          <TextAndSwitchGreen label="Target Usable:" checked={true} />
-          <Typography variant="h6">Distance: {1.7}m</Typography>
-        </Grid>
+  <ClickableTile title="Lime Data">
+    <Grid container item alignItems="center" justify="center">
+      <Grid item>
+        <TextAndSwitchGreen label="Target Usable:" checked={true} />
+        <Typography variant="h6">Distance: {1.7}m</Typography>
       </Grid>
-    </CardActionArea>
-  </Card>
+    </Grid>
+  </ClickableTile>
 );
 
 export default LimeData;
