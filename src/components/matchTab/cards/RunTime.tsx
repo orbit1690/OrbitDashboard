@@ -9,8 +9,8 @@ import {
 } from "@material-ui/core";
 
 const RunTime = (): JSX.Element => (
-  <Card variant="outlined">
-    <CardActionArea>
+  <Card variant="outlined" style={{ height: "100%" }}>
+    <CardActionArea style={{ height: "100%" }}>
       <CardHeader title="Cycle Time" />
 
       <Grid container justify="center" alignItems="center">

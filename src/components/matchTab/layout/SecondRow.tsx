@@ -20,11 +20,11 @@ const FirstColumn = (): JSX.Element => (
     </Grid>
 
     <Grid item>
-      <Faults />
+      <LimeData />
     </Grid>
 
     <Grid item>
-      <TimeLeft />
+      <RunTime />
     </Grid>
   </Grid>
 );
@@ -37,32 +37,56 @@ const SecondColumn = (): JSX.Element => (
     style={{ height: "100%" }}
   >
     <Grid item>
+      <TimeLeft />
+    </Grid>
+
+    <Grid item>
+      <Faults />
+    </Grid>
+
+    <Grid item>
       <ControlPanelColor />
-    </Grid>
-
-    <Grid item>
-      <LimeData />
-    </Grid>
-
-    <Grid item>
-      <RunTime />
     </Grid>
   </Grid>
 );
 
 const SecondRow = (): JSX.Element => (
-  <Box marginLeft={4} marginTop={-3}>
+  <Box marginLeft={4} marginTop={2}>
     <Grid direction="row" item container justify="flex-start" spacing={2}>
       <Grid item xs={3}>
         <Lime />
       </Grid>
 
-      <Grid item xs={2}>
-        <FirstColumn />
-      </Grid>
+      <Grid item xs={4} container direction="column" justify="space-between">
+        {/* first sub-row */}
+        <Grid item container spacing={2}>
+          <Grid item xs={6}>
+            <AutoDrive />
+          </Grid>
+          <Grid item xs={6}>
+            <TimeLeft />
+          </Grid>
+        </Grid>
 
-      <Grid item xs={2}>
-        <SecondColumn />
+        {/* second sub-row */}
+        <Grid item container spacing={2}>
+          <Grid item xs={6}>
+            <LimeData />
+          </Grid>
+          <Grid item xs={6}>
+            <Faults />
+          </Grid>
+        </Grid>
+
+        {/* third sub-row */}
+        <Grid item container spacing={2}>
+          <Grid item xs={6}>
+            <RunTime />
+          </Grid>
+          <Grid item xs={6}>
+            <ControlPanelColor />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   </Box>

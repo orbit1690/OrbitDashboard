@@ -4,7 +4,7 @@ import { TextAndSwitchRed } from "../../common/TextAndSwitch";
 import { Card, CardHeader, CardActionArea, Grid } from "@material-ui/core";
 
 const Faults = (): JSX.Element => (
-  <CardActionArea style={{ borderRadius: 15 }}>
+  <CardActionArea style={{ borderRadius: 15, height: "100%" }}>
     <Card variant="outlined" style={{ height: "100%" }}>
       <CardHeader title="Faults" />
 

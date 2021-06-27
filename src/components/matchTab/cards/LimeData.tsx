@@ -10,8 +10,8 @@ import {
 import { TextAndSwitchGreen } from "../../common/TextAndSwitch";
 
 const LimeData = (): JSX.Element => (
-  <Card variant="outlined">
-    <CardActionArea>
+  <Card variant="outlined" style={{ height: "100%" }}>
+    <CardActionArea style={{ height: "100%" }}>
       <CardHeader title="Lime Data" />
 
       <Grid container item alignItems="center" justify="center">

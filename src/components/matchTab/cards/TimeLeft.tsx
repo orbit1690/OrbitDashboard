@@ -9,8 +9,8 @@ import {
 } from "@material-ui/core";
 
 const TimeLeft = (): JSX.Element => (
-  <Card variant="outlined">
-    <CardActionArea>
+  <Card variant="outlined" style={{ height: "100%" }}>
+    <CardActionArea style={{ height: "100%" }}>
       <CardHeader title="Time Left" />
 
       <Grid container justify="center" alignItems="center">

@@ -4,8 +4,8 @@ import { Card, CardHeader, CardActionArea, Grid } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 
 const ControlPanelColor = (): JSX.Element => (
-  <Card variant="outlined">
-    <CardActionArea>
+  <Card variant="outlined" style={{ height: "100%" }}>
+    <CardActionArea style={{ height: "100%" }}>
       <CardHeader title="Control Panel" />
 
       <Grid container justify="center" alignItems="center">
