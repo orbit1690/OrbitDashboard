@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardActionArea, useTheme } from "@material-ui/core";
 import { CardHeader } from "@material-ui/core";
 import { TileProps } from "./Tile";
-import { useIsDarkTheme } from "../../utils/Hooks";
+import { isDarkTheme } from "../../Theme";
 
 const ClickableTile = (props: TileProps): JSX.Element => {
   const { ripple } = useTheme().palette;
@@ -12,7 +12,7 @@ const ClickableTile = (props: TileProps): JSX.Element => {
       style={{
         height: "100%",
         borderRadius: 15,
-        color: useIsDarkTheme() ? ripple.dark : "",
+        color: isDarkTheme() ? ripple.dark : ripple.light,
       }}
     >
       <Card variant="outlined" style={{ height: "100%" }}>
