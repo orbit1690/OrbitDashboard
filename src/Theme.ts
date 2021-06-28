@@ -10,12 +10,20 @@ declare module "@material-ui/core/styles/createPalette" {
   }
 }
 
-export const theme: Theme = createMuiTheme({
+export const lightTheme: Theme = createMuiTheme({
   palette: {
     type: "light",
     ripple: {
-      dark: grey[300],
       main: "",
+    },
+  },
+});
+
+export const darkTheme: Theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    ripple: {
+      main: grey[300],
     },
   },
 });

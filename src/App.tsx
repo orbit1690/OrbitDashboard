@@ -8,24 +8,27 @@ import SettingsTab from "./components/settingsTab/SettingsTab";
 import { ThemeProvider, Grid } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 
-import { theme, isDarkTheme } from "./Theme";
+import { lightTheme, darkTheme } from "./Theme";
 
 import { Tab } from "./components/common/Menu";
+import { useToggle } from "./utils/Hooks";
 
 const App = (): JSX.Element => {
   const [tab, setTab] = useState(Tab.Match);
+
+  const [isDarkTheme, toggleTheme] = useToggle();
 
   const Content = (): JSX.Element => {
     switch (tab) {
       case Tab.Match:
         return <MatchTab />;
       case Tab.Settings:
-        return <SettingsTab />;
+        return <SettingsTab toggleTheme={toggleTheme} />;
     }
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <AppBar setTab={setTab} />
       <Grid
         container
@@ -33,7 +36,7 @@ const App = (): JSX.Element => {
           position: "fixed",
           left: 0,
           top: 69 /* 69 is the height of the AppBar */,
-          backgroundColor: isDarkTheme() ? grey[900] : "",
+          backgroundColor: isDarkTheme ? grey[900] : "",
         }}
       >
         <Content />
