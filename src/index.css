@@ -21,3 +21,7 @@ body {
 .MuiCardActionArea-root, .MuiCardActionArea-root * {
   cursor: default !important;
 }
+
+* {
+  transition: color 0.5s, background-color 0.5s;
+}
