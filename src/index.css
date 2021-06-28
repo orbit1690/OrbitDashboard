@@ -17,3 +17,7 @@ body {
 .MuiPaper-outlined {
   border-radius: 15px !important;
 }
+
+.MuiCardActionArea-root, .MuiCardActionArea-root * {
+  cursor: default !important;
+}
