@@ -2,10 +2,10 @@ import React from "react";
 
 import SpeedIcon from "@material-ui/icons/Speed";
 
-import { Grid, Card, TextField, CardHeader, Box } from "@material-ui/core";
+import { Grid, TextField, Box } from "@material-ui/core";
 
-import AngleImg from "../../../assets/angle.png";
-import { CardActionArea } from "@material-ui/core";
+import AngleIcon from "../../../assets/AngleIcon";
+
 import Tile from "../../common/Tile";
 
 const AngleInput = (): JSX.Element => (
@@ -18,7 +18,7 @@ const AngleInput = (): JSX.Element => (
     wrap="nowrap"
   >
     <Grid item xs={2}>
-      <img src={AngleImg} width={35} />
+      <AngleIcon />
     </Grid>
     <Grid item xs={10}>
       <TextField label="Angle:" type="number" variant="outlined" />
