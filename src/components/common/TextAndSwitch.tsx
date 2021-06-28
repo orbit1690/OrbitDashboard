@@ -2,6 +2,7 @@ import React from "react";
 
 import { green, red } from "@material-ui/core/colors";
 import { withStyles, Switch, Grid, Typography } from "@material-ui/core";
+import { isDarkTheme } from "../../Theme";
 
 const coloredSwitch = (color: any) =>
   withStyles({
@@ -23,6 +24,7 @@ export const RedSwitch = coloredSwitch(red);
 interface TextAndSwitchProps {
   readonly label: string;
   readonly checked: boolean;
+  readonly onClick?: () => void;
 }
 
 export const TextAndSwitchGreen = (props: TextAndSwitchProps): JSX.Element => (
@@ -33,8 +35,17 @@ export const TextAndSwitchGreen = (props: TextAndSwitchProps): JSX.Element => (
     justify="space-between"
     wrap="nowrap"
   >
-    <Typography variant="h6">{props.label}</Typography>
-    <GreenSwitch checked={props.checked} />
+    <Typography
+      variant="h6"
+      style={{ color: isDarkTheme() ? "white" : "black" }}
+    >
+      {props.label}
+    </Typography>
+    <GreenSwitch
+      color="default"
+      checked={props.checked}
+      onClick={props.onClick}
+    />
   </Grid>
 );
 
@@ -46,7 +57,12 @@ export const TextAndSwitchRed = (props: TextAndSwitchProps): JSX.Element => (
     justify="space-between"
     wrap="nowrap"
   >
-    <Typography variant="h6">{props.label}</Typography>
-    <RedSwitch checked={props.checked} />
+    <Typography
+      variant="h6"
+      style={{ color: isDarkTheme() ? "white" : "black" }}
+    >
+      {props.label}
+    </Typography>
+    <RedSwitch checked={props.checked} onClick={props.onClick} />
   </Grid>
 );
