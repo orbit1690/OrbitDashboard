@@ -23,5 +23,10 @@ body {
 }
 
 * {
+  /* dark/light theme transition */
   transition: color 0.5s, background-color 0.5s;
+
+  /* no dragging pictures and selecting text */
+  user-select: none;
+  -webkit-user-drag: none;
 }
