@@ -12,6 +12,7 @@ import { lightTheme, darkTheme } from "./Theme";
 
 import { Tab } from "./components/common/Menu";
 import { useToggle } from "./utils/Hooks";
+import Test from "./components/matchTab/layout/Test";
 
 const App = (): JSX.Element => {
   const [tab, setTab] = useState(Tab.Match);
@@ -21,7 +22,7 @@ const App = (): JSX.Element => {
   const Content = (): JSX.Element => {
     switch (tab) {
       case Tab.Match:
-        return <MatchTab />;
+        return <Test />;
       case Tab.Settings:
         return <SettingsTab toggleTheme={toggleTheme} />;
     }
