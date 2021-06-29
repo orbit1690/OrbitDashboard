@@ -7,7 +7,7 @@ import SecondRow from "./layout/SecondRow";
 
 const MatchTab = (): JSX.Element => {
   return (
-    <Box marginY={2} width={1} marginX={1}>
+    <Box marginY={2} width={1} height="100vh" marginX={1}>
       <Grid container direction="column">
         <Grid item>
           <FirstRow />
