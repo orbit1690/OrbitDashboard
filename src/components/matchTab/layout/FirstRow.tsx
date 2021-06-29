@@ -9,8 +9,8 @@ import RobotState, { RobotStates } from "../cards/RobotState";
 
 const FirstRow = (): JSX.Element => (
   <Grid item container justify="space-around" alignItems="flex-start">
-    <Grid item xs={5}>
-      <FieldCard widthXs={5} />
+    <Grid item xs={4}>
+      <FieldCard widthXs={4} />
     </Grid>
 
     <Grid item container xs={6} spacing={2}>

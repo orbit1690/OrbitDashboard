@@ -12,8 +12,8 @@ const FirstColumn = (): JSX.Element => (
   <Grid
     container
     direction="column"
-    justify="space-between"
-    style={{ height: "100%" }}
+    justify="flex-start"
+    spacing={2}
   >
     <Grid item>
       <AutoDrive />
@@ -33,8 +33,8 @@ const SecondColumn = (): JSX.Element => (
   <Grid
     container
     direction="column"
-    justify="space-between"
-    style={{ height: "100%" }}
+    justify="flex-start"
+    spacing={2}
   >
     <Grid item>
       <TimeLeft />
@@ -51,15 +51,15 @@ const SecondColumn = (): JSX.Element => (
 );
 
 const SecondRow = (): JSX.Element => (
-  <Box marginLeft={4} marginTop={2}>
+  <Box marginLeft={10} marginTop={2}>
     <Grid direction="row" item container justify="flex-start" spacing={2}>
       <Grid item xs={3}>
         <Lime />
       </Grid>
 
-      <Grid item xs={4} container direction="column" justify="space-between">
+      <Grid item xs={4} container direction="column" justify="flex-start" spacing={2} >
         {/* first sub-row */}
-        <Grid item container spacing={2}>
+        < Grid item container spacing={2}>
           <Grid item xs={6}>
             <AutoDrive />
           </Grid>
@@ -89,7 +89,7 @@ const SecondRow = (): JSX.Element => (
         </Grid>
       </Grid>
     </Grid>
-  </Box>
+  </Box >
 );
 
 export default SecondRow;
