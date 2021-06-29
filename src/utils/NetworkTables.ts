@@ -7,21 +7,18 @@ import { ipcRenderer, IpcMainEvent, ipcMain } from "electron";
 
 /*
 IPC Messaging Protocol:
-    1) renderer -> main : connectNetworkTableIpcChannel, table;
+    1) renderer -> main : connectNetworkTableIpcChannel, entry
         Tells the main process to connect to the network table entry and listen.
+        In addition, sends the ID of the listener in order to store it in the map. 
 
-    2) main -> renderer: `Listener ${entry}`, ntListener
-        Sends the renderer process a reference to the listener object which could be removed later.
+    2) main -> renderer: `NTEntry ${entry}, value
+        Sends new values via the channel of the entry when it gets updated.
 
-    3) main -> renderer: `NTEntry ${entry}, value
-        Sends new value via the channel of the entry when it gets updated.
-
-    4) renderer -> main: "Remove-Listener", ntListener
-        Sends the network table listener to the main process in order to remove it when the component is unmounted.
+    3) renderer -> main: "Remove-Listener", id
+        Sends the listener's ID to the main process in order to remove the it when the component is unmounted.
 */
 
 const ntListeners = new Map<number, ntClient.Listener>();
-let listenerCounter = 0;
 
 const connectNetworkTableIpcChannel = "Connect-Network-Table";
 
@@ -31,30 +28,31 @@ export const connectToRoboRIO = (
 ): void =>
   client.start((isConnected: boolean, err: Error): void => {
     // Displays the error and the state of connection
-    console.log({ isConnected, err });
+    console.log(`Connected to RoboRIO: ${isConnected}`);
+    if (err) {
+      console.log(`Error: ${err}`);
+    }
   }, address);
 
-type NetworkTableEvent = "add" | "delete" | "update" | "flagChange";
+type NTEntry = {
+  readonly key: string;
+  readonly id: number;
+};
 
 const listenForNetworkTable = (
   client: ntClient.Client,
-  entry: string,
+  entry: NTEntry,
   ipcEvent: IpcMainEvent
 ): void => {
   // Adds a listener to the client
   const networkTableListener: ntClient.Listener = client.addListener(
-    (key: string, val: unknown, type: String, id: NetworkTableEvent): void => {
-      if (key === entry) ipcEvent.reply(`NTEntry ${entry}`, val);
+    (key: string, val: unknown): void => {
+      if (key === entry.key) ipcEvent.reply(`NTEntry ${entry.key}`, val);
     }
   );
 
-  listenerCounter++;
-
-  // Sending the render process the network table entry listener that was just assigned
-  ipcEvent.reply(`Listener ID ${entry}`, listenerCounter);
-  ntListeners.set(listenerCounter, networkTableListener);
-
-  console.log(`Assigned listener! id: ${listenerCounter}`);
+  // Storing the listener in the map
+  ntListeners.set(entry.id, networkTableListener);
 };
 
 export const listenForNTRequestsFromRenderer = (
@@ -62,7 +60,7 @@ export const listenForNTRequestsFromRenderer = (
 ): void => {
   ipcMain.on(
     connectNetworkTableIpcChannel,
-    (ipcEvent: IpcMainEvent, entry: string): void =>
+    (ipcEvent: IpcMainEvent, entry: NTEntry): void =>
       listenForNetworkTable(client, entry, ipcEvent)
   );
 };
@@ -71,10 +69,10 @@ export const listenForNetworkTableRemoval = (client: ntClient.Client): void => {
   ipcMain.on("Remove-Listener", (_: never, listenerID: number): void => {
     client.removeListener(ntListeners.get(listenerID));
     ntListeners.delete(listenerID);
-
-    console.log(`removed listener! id: ${listenerID}`);
   });
 };
+
+let listenerCounter = 0;
 
 export const useNetworkTable = <T>(entry: string, defaultValue: T): T => {
   const [data, setData] = useState(defaultValue);
@@ -86,19 +84,16 @@ export const useNetworkTable = <T>(entry: string, defaultValue: T): T => {
 
     ipcRenderer.on(`NTEntry ${entry}`, handleIpcReply);
 
-    // Holds the ntListener in order to remove it when the component is unmounted from the DOM.
-    let listenerID: number;
+    listenerCounter++;
 
-    // Set the networkTableListener to the listener returned from the ntClient.
-    ipcRenderer.on(`Listener ID ${entry}`, (_: never, id: number): void => {
-      listenerID = id;
-    });
+    // Storing the entry's key and id
+    const ntEntry: NTEntry = { key: entry, id: listenerCounter };
 
-    ipcRenderer.send(connectNetworkTableIpcChannel, entry);
+    ipcRenderer.send(connectNetworkTableIpcChannel, ntEntry);
 
     // Cleanup when component is unmounted
     return (): void => {
-      ipcRenderer.send("Remove-Listener", listenerID);
+      ipcRenderer.send("Remove-Listener", ntEntry.id);
       ipcRenderer.removeListener(`NTEntry ${entry}`, handleIpcReply);
     };
   }, []);
