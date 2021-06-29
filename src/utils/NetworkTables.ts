@@ -1,5 +1,5 @@
 // React code for UI
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 // Code for robot communications
 import * as ntClient from "wpilib-nt-client";
 
@@ -20,11 +20,14 @@ IPC Messaging Protocol:
         Sends the network table listener to the main process in order to remove it when the component is unmounted.
 */
 
+const ntListeners = new Map<number, ntClient.Listener>();
+let listenerCounter = 0;
+
 const connectNetworkTableIpcChannel = "Connect-Network-Table";
 
 export const connectToRoboRIO = (
   client: ntClient.Client,
-  address: string = "172.22.11.2"
+  address: string = "10.16.90.2"
 ): void =>
   client.start((isConnected: boolean, err: Error): void => {
     // Displays the error and the state of connection
@@ -41,14 +44,17 @@ const listenForNetworkTable = (
   // Adds a listener to the client
   const networkTableListener: ntClient.Listener = client.addListener(
     (key: string, val: unknown, type: String, id: NetworkTableEvent): void => {
-      console.log({ key, val, type, id });
-
       if (key === entry) ipcEvent.reply(`NTEntry ${entry}`, val);
     }
   );
 
+  listenerCounter++;
+
   // Sending the render process the network table entry listener that was just assigned
-  ipcEvent.reply(`Listener ${entry}`, networkTableListener);
+  ipcEvent.reply(`Listener ID ${entry}`, listenerCounter);
+  ntListeners.set(listenerCounter, networkTableListener);
+
+  console.log(`Assigned listener! id: ${listenerCounter}`);
 };
 
 export const listenForNTRequestsFromRenderer = (
@@ -62,40 +68,37 @@ export const listenForNTRequestsFromRenderer = (
 };
 
 export const listenForNetworkTableRemoval = (client: ntClient.Client): void => {
-  ipcMain.on(
-    "Remove-Listener",
-    (_: never, ntListener: ntClient.Listener): void =>
-      client.removeListener(ntListener)
-  );
+  ipcMain.on("Remove-Listener", (_: never, listenerID: number): void => {
+    client.removeListener(ntListeners.get(listenerID));
+    ntListeners.delete(listenerID);
+
+    console.log(`removed listener! id: ${listenerID}`);
+  });
 };
 
 export const useNetworkTable = <T>(entry: string, defaultValue: T): T => {
   const [data, setData] = useState(defaultValue);
 
   // Update the data when the network table entry changes value
-  useEffect((): (() => void) => {
+  useEffect(() => {
     // Just a function to set the data to the incoming data from the ipc.
     const handleIpcReply = (_: never, newData: T): void => setData(newData);
 
     ipcRenderer.on(`NTEntry ${entry}`, handleIpcReply);
 
     // Holds the ntListener in order to remove it when the component is unmounted from the DOM.
-    const networkTableListener: React.MutableRefObject<ntClient.Listener> =
-      useRef<ntClient.Listener>(null);
+    let listenerID: number;
 
     // Set the networkTableListener to the listener returned from the ntClient.
-    ipcRenderer.on(
-      `Listener ${entry}`,
-      (_: never, listener: ntClient.Listener): void => {
-        networkTableListener.current = listener;
-      }
-    );
+    ipcRenderer.on(`Listener ID ${entry}`, (_: never, id: number): void => {
+      listenerID = id;
+    });
 
     ipcRenderer.send(connectNetworkTableIpcChannel, entry);
 
     // Cleanup when component is unmounted
     return (): void => {
-      ipcRenderer.send("Remove-Listener", networkTableListener);
+      ipcRenderer.send("Remove-Listener", listenerID);
       ipcRenderer.removeListener(`NTEntry ${entry}`, handleIpcReply);
     };
   }, []);
