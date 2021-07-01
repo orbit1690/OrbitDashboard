@@ -1,4 +1,5 @@
 import React from "react";
+import { wrapAngle } from "../utils/Math";
 import Vector from "../utils/Vector";
 import { Pose, FieldData, FieldConversion, FieldElement } from "./Field";
 
@@ -19,8 +20,10 @@ const Robot = (props: RobotProps): JSX.Element => (
       left: props.pose.position.x,
       top: props.pose.position.y,
       position: "absolute",
-      transform: `translate(-50%, -50%) rotate(-${props.pose.heading}rad) `,
-      transformOrigin: "center",
+      // transformOrigin: "center",
+      transform: `translate(-50%, -50%) rotate(-${wrapAngle(
+        props.pose.heading
+      )}rad) `,
       width: props.pose.size.x,
       height: props.pose.size.y,
     }}

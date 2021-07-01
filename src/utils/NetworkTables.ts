@@ -47,7 +47,10 @@ const listenForNetworkTable = (
   // Adds a listener to the client
   const networkTableListener: ntClient.Listener = client.addListener(
     (key: string, val: unknown): void => {
-      if (key === entry.key) ipcEvent.reply(`NTEntry ${entry.key}`, val);
+      if (key === entry.key) {
+        ipcEvent.reply(`NTEntry ${entry.key}`, val);
+        console.log({ key, val });
+      }
     }
   );
 

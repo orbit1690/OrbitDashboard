@@ -4,7 +4,8 @@ import { Card, CardActionArea, CardHeader } from "@material-ui/core";
 
 import Vector from "../../../utils/Vector";
 
-import ExampleField from "../examples/ExampleField";
+// import ExampleField from "../examples/ExampleField";
+import FieldWithSizing from "./FieldWithSizing";
 
 const FieldCard = (props: { widthXs: number }): JSX.Element => (
   <Card variant="outlined">
@@ -30,7 +31,7 @@ const FieldCard = (props: { widthXs: number }): JSX.Element => (
       }}
     >
       {/* TODO use real field */}
-      <ExampleField widthXs={props.widthXs} />
+      <FieldWithSizing widthXs={props.widthXs} />
     </CardActionArea>
   </Card>
 );

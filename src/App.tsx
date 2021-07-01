@@ -22,7 +22,7 @@ const App = (): JSX.Element => {
   const Content = (): JSX.Element => {
     switch (tab) {
       case Tab.Match:
-        return <Test />;
+        return <MatchTab />;
       case Tab.Settings:
         return <SettingsTab toggleTheme={toggleTheme} />;
     }
